@@ -12,13 +12,13 @@ def news(request):
         if form.is_valid:
             news = form.save(commit=False)
             news.save()
-            return redirect('success', pk=news.pk)
+            return redirect('success', id=news.pk)
     else:
         form = SearchForm()
         dict = {'form': form}
     return render(request, 'form.html', context=dict)
 
-def success(request, pk):
-    form = get_object_or_404(FormNews, pk=pk)
-    dict = {'form': form}
-    return render(request, 'success.html', dict)
+def success(request, id):
+    news = FormNews.objects.get(id=id)      
+    value = round(news.predicao *100, 2)
+    return render(request, 'success.html', {"news": news, "value": value})

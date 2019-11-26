@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class FormNews (models.Model):
-    veiculo = models.URLField()
+    url = models.URLField()
     titulo = models.CharField(max_length=200)
     texto = models.TextField()
     predicao = models.FloatField(blank=True)
@@ -54,9 +54,7 @@ class FormNews (models.Model):
         # Leitura do modelo que foi salvo pelo outro arquivo
         model = load_model('app/model.h5')
 
-        # Mostrar informações da Rede
-        model.summary()
-
+       
 
         return 1 - model.predict(text_padding)[0][0]
 

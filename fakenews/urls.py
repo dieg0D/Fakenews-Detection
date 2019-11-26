@@ -21,5 +21,5 @@ from app import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('', views.news, name='news'),
-    path('success/<int:pk>', views.success, name='success'),
+    path('success/<int:id>', views.success, name='success'),
 ]
