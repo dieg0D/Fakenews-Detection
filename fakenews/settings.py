@@ -79,8 +79,8 @@ WSGI_APPLICATION = 'fakenews.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'matheus',
-        'PASSWORD': 'matheus7',
+        'NAME': 'fakenews',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
