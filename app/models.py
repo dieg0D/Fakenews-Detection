@@ -1,18 +1,5 @@
 from django.db import models
 
-# Import ML
-from keras.models import Sequential
-from keras.models import load_model
-from keras import layers
-from sklearn.model_selection import train_test_split
-from keras.utils import to_categorical
-from keras.preprocessing.sequence import pad_sequences
-from keras.preprocessing.text import Tokenizer
-from math import sqrt
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
 
 # Create your models here.
 class FormNews (models.Model):
@@ -22,6 +9,20 @@ class FormNews (models.Model):
     predicao = models.FloatField(blank=True)
 
     def predict(self):
+        # Import ML
+        from keras.models import Sequential
+        from keras.models import load_model
+        from keras import layers
+        from sklearn.model_selection import train_test_split
+        from keras.utils import to_categorical
+        from keras.preprocessing.sequence import pad_sequences
+        from keras.preprocessing.text import Tokenizer
+        from math import sqrt
+        from sklearn.metrics import accuracy_score
+        import matplotlib.pyplot as plt
+        import numpy as np
+        import pandas as pd
+
         # Constantes que usaremos em nosso código
         MAX_SEQUENCE_LENGTH = 5000
         MAX_NUM_WORDS = 25000
@@ -50,14 +51,15 @@ class FormNews (models.Model):
                                     padding='pre',
                                     truncating='pre')
 
-        # Leitura do modelo que fo salvo pelo outro arquivo
-        new_model = load_model('app/model.h5')
+        # Leitura do modelo que foi salvo pelo outro arquivo
+        model = load_model('app/model.h5')
 
         # Mostrar informações da Rede
-        new_model.summary()
+        model.summary()
 
 
-        return 1 - new_model.predict(text_padding)[0][0]
+        return 1 - model.predict(text_padding)[0][0]
+
 
 
     def save(self, *args, **kwargs):
